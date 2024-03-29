@@ -1,10 +1,10 @@
 # International Phone Field Package
 
 [![Pub Version](https://img.shields.io/pub/v/flutter_intl_phone_field?color=blue&style=plastic)](https://pub.dev/packages/flutter_intl_phone_field)
-[![GitHub Repo stars](https://img.shields.io/github/stars/mohesu/flutter_intl_phone_field?color=gold&style=plastic)](https://github.com/mohesu/flutter_intl_phone_field/stargazers)
-[![GitHub Repo forks](https://img.shields.io/github/forks/mohesu/flutter_intl_phone_field?color=slateblue&style=plastic)](https://github.com/mohesu/flutter_intl_phone_field/fork)
-[![GitHub Repo issues](https://img.shields.io/github/issues/mohesu/flutter_intl_phone_field?color=coral&style=plastic)](https://github.com/mohesu/flutter_intl_phone_field/issues)
-[![GitHub Repo contributors](https://img.shields.io/github/contributors/mohesu/flutter_intl_phone_field?color=green&style=plastic)](https://github.com/mohesu/flutter_intl_phone_field/graphs/contributors)
+[![GitHub Repo stars](https://img.shields.io/github/stars/rvndsngwn/flutter_intl_phone_field?color=gold&style=plastic)](https://github.com/rvndsngwn/flutter_intl_phone_field/stargazers)
+[![GitHub Repo forks](https://img.shields.io/github/forks/rvndsngwn/flutter_intl_phone_field?color=slateblue&style=plastic)](https://github.com/rvndsngwn/flutter_intl_phone_field/fork)
+[![GitHub Repo issues](https://img.shields.io/github/issues/rvndsngwn/flutter_intl_phone_field?color=coral&style=plastic)](https://github.com/rvndsngwn/flutter_intl_phone_field/issues)
+[![GitHub Repo contributors](https://img.shields.io/github/contributors/rvndsngwn/flutter_intl_phone_field?color=green&style=plastic)](https://github.com/rvndsngwn/flutter_intl_phone_field/graphs/contributors)
 
 A customized Flutter TextFormField to input international phone number along with country code.
 
