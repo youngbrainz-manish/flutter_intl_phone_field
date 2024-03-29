@@ -540,7 +540,9 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
               }
               return validatorMessage;
             },
-      maxLength: widget.maxLength ?? _selectedCountry.maxLength,
+      maxLength: widget.disableLengthCheck
+          ? null
+          : widget.maxLength ?? _selectedCountry.maxLength,
       onEditingComplete: widget.onEditingComplete,
       expands: widget.expands,
       maxLines: widget.maxLines,

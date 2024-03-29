@@ -12,7 +12,12 @@ This widget can be used to make customized text field to take phone number input
 
 ## Screenshots
 
-<img src="https://github.com/rvndsngwn/flutter_intl_phone_field/blob/master/image-1.png?raw=true" height="500px"> <img src="https://github.com/rvndsngwn/flutter_intl_phone_field/blob/master/image-2.png?raw=true" height="500px"> <img src="https://github.com/rvndsngwn/flutter_intl_phone_field/blob/master/image-3.png?raw=true" height="500px">
+<table>
+<td><img src="https://raw.githubusercontent.com/rvndsngwn/flutter_intl_phone_field/master/image-1.png" width=270 height=480 alt=""></td>
+<td><img src="https://raw.githubusercontent.com/rvndsngwn/flutter_intl_phone_field/master/image-2.png" width=270 height=480 alt=""></td>
+<td><img src="https://raw.githubusercontent.com/rvndsngwn/flutter_intl_phone_field/master/image-3.png" width=270 height=480 alt=""></td>
+</tr>
+</table>
 
 ## Installing
 
