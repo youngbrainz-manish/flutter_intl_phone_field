@@ -43,7 +43,7 @@ dependencies:
   flutter_intl_phone_field:
     git:
       url: git://github.com/rvndsngwn/flutter_intl_phone_field.git
-      ref: master
+      ref: main
 ```
 
 ## How to Use
