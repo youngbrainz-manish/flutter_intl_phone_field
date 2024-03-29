@@ -64,15 +64,6 @@ class _MyAppState extends State<MyApp> {
                     ),
                   ),
                   languageCode: "en",
-                  validator: (phone) {
-                    if (phone?.number.isEmpty ?? true) {
-                      return 'Please enter a valid phone number';
-                    }
-                    if (phone!.number.length < 10) {
-                      return 'Please enter a valid phone number';
-                    }
-                    return null;
-                  },
                   onChanged: (phone) {
                     print(phone.completeNumber);
                   },
