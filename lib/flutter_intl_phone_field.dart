@@ -361,35 +361,36 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
   @override
   void initState() {
     super.initState();
+
+    _countryList = widget.countries ?? countries;
+    filteredCountries = _countryList;
+    number = widget.initialValue ?? widget.controller?.text ?? '';
+    if (widget.initialCountryCode == null && number.startsWith('+')) {
+      number = number.substring(1);
+      // parse initial value
+      _selectedCountry = countries.firstWhere(
+          (country) => number.startsWith(country.fullCountryCode),
+          orElse: () => _countryList.first);
+
+      // remove country code from the initial number value
+      number = number.replaceFirst(
+          RegExp("^${_selectedCountry.fullCountryCode}"), "");
+    } else {
+      _selectedCountry = _countryList.firstWhere(
+          (item) => item.code == (widget.initialCountryCode ?? 'US'),
+          orElse: () => _countryList.first);
+
+      // remove country code from the initial number value
+      if (number.startsWith('+')) {
+        number = number.replaceFirst(
+            RegExp("^\\+${_selectedCountry.fullCountryCode}"), "");
+      } else {
+        number = number.replaceFirst(
+            RegExp("^${_selectedCountry.fullCountryCode}"), "");
+      }
+    }
     Future.microtask(
       () {
-        _countryList = widget.countries ?? countries;
-        filteredCountries = _countryList;
-        number = widget.initialValue ?? widget.controller?.text ?? '';
-        if (widget.initialCountryCode == null && number.startsWith('+')) {
-          number = number.substring(1);
-          // parse initial value
-          _selectedCountry = countries.firstWhere(
-              (country) => number.startsWith(country.fullCountryCode),
-              orElse: () => _countryList.first);
-
-          // remove country code from the initial number value
-          number = number.replaceFirst(
-              RegExp("^${_selectedCountry.fullCountryCode}"), "");
-        } else {
-          _selectedCountry = _countryList.firstWhere(
-              (item) => item.code == (widget.initialCountryCode ?? 'US'),
-              orElse: () => _countryList.first);
-
-          // remove country code from the initial number value
-          if (number.startsWith('+')) {
-            number = number.replaceFirst(
-                RegExp("^\\+${_selectedCountry.fullCountryCode}"), "");
-          } else {
-            number = number.replaceFirst(
-                RegExp("^${_selectedCountry.fullCountryCode}"), "");
-          }
-        }
         if (widget.controller?.text.isNotEmpty ?? false) {
           widget.controller?.text = number;
         }

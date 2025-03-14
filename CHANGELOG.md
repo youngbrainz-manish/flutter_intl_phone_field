@@ -1,3 +1,7 @@
+## 0.0.7
+
+- Refactor initState to use Future.microtask for improved initialization of country list and phone number handling
+
 ## 0.0.6
 
 - [#1](https://github.com/rvndsngwn/flutter_intl_phone_field/issues/1) has been fixed.

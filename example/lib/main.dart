@@ -56,6 +56,7 @@ class _MyAppState extends State<MyApp> {
                   height: 10,
                 ),
                 IntlPhoneField(
+                  initialValue: "7012345678",
                   focusNode: focusNode,
                   decoration: const InputDecoration(
                     labelText: 'Phone Number',
