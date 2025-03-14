@@ -361,54 +361,58 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
   @override
   void initState() {
     super.initState();
-    _countryList = widget.countries ?? countries;
-    filteredCountries = _countryList;
-    number = widget.initialValue ?? widget.controller?.text ?? '';
-    if (widget.initialCountryCode == null && number.startsWith('+')) {
-      number = number.substring(1);
-      // parse initial value
-      _selectedCountry = countries.firstWhere(
-          (country) => number.startsWith(country.fullCountryCode),
-          orElse: () => _countryList.first);
+    Future.microtask(
+      () {
+        _countryList = widget.countries ?? countries;
+        filteredCountries = _countryList;
+        number = widget.initialValue ?? widget.controller?.text ?? '';
+        if (widget.initialCountryCode == null && number.startsWith('+')) {
+          number = number.substring(1);
+          // parse initial value
+          _selectedCountry = countries.firstWhere(
+              (country) => number.startsWith(country.fullCountryCode),
+              orElse: () => _countryList.first);
 
-      // remove country code from the initial number value
-      number = number.replaceFirst(
-          RegExp("^${_selectedCountry.fullCountryCode}"), "");
-    } else {
-      _selectedCountry = _countryList.firstWhere(
-          (item) => item.code == (widget.initialCountryCode ?? 'US'),
-          orElse: () => _countryList.first);
+          // remove country code from the initial number value
+          number = number.replaceFirst(
+              RegExp("^${_selectedCountry.fullCountryCode}"), "");
+        } else {
+          _selectedCountry = _countryList.firstWhere(
+              (item) => item.code == (widget.initialCountryCode ?? 'US'),
+              orElse: () => _countryList.first);
 
-      // remove country code from the initial number value
-      if (number.startsWith('+')) {
-        number = number.replaceFirst(
-            RegExp("^\\+${_selectedCountry.fullCountryCode}"), "");
-      } else {
-        number = number.replaceFirst(
-            RegExp("^${_selectedCountry.fullCountryCode}"), "");
-      }
-    }
-    if (widget.controller?.text.isNotEmpty ?? false) {
-      widget.controller?.text = number;
-    }
+          // remove country code from the initial number value
+          if (number.startsWith('+')) {
+            number = number.replaceFirst(
+                RegExp("^\\+${_selectedCountry.fullCountryCode}"), "");
+          } else {
+            number = number.replaceFirst(
+                RegExp("^${_selectedCountry.fullCountryCode}"), "");
+          }
+        }
+        if (widget.controller?.text.isNotEmpty ?? false) {
+          widget.controller?.text = number;
+        }
 
-    if (widget.autovalidateMode == AutovalidateMode.always) {
-      final initialPhoneNumber = PhoneNumber(
-        countryISOCode: _selectedCountry.code,
-        countryCode: '+${_selectedCountry.dialCode}',
-        number: widget.initialValue ?? '',
-      );
+        if (widget.autovalidateMode == AutovalidateMode.always) {
+          final initialPhoneNumber = PhoneNumber(
+            countryISOCode: _selectedCountry.code,
+            countryCode: '+${_selectedCountry.dialCode}',
+            number: widget.initialValue ?? '',
+          );
 
-      final value = widget.validator?.call(initialPhoneNumber);
+          final value = widget.validator?.call(initialPhoneNumber);
 
-      if (value is String) {
-        validatorMessage = value;
-      } else {
-        (value as Future).then((msg) {
-          validatorMessage = msg;
-        });
-      }
-    }
+          if (value is String) {
+            validatorMessage = value;
+          } else {
+            (value as Future).then((msg) {
+              validatorMessage = msg;
+            });
+          }
+        }
+      },
+    );
   }
 
   Future<void> _changeCountryDialog() async {
