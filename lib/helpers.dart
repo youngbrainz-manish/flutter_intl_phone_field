@@ -34,7 +34,10 @@ extension CountryExtensions on List<Country> {
 extension RemoveCountryCode on String {
   // remove country code from the initial number value
   String removeCountryCode(
-      String? countryCode, Country selectedCountry, List<Country> countryList) {
+    String? countryCode,
+    Country selectedCountry,
+    List<Country> countryList,
+  ) {
     String number = this;
     debugPrint("number: $number");
     if (countryCode == null && number.startsWith('+')) {

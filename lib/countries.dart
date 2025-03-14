@@ -7569,6 +7569,20 @@ class Country {
   }
 
   String localizedName(String languageCode) {
-    return nameTranslations[languageCode] ?? name;
+    // First try exact match
+    if (nameTranslations.containsKey(languageCode)) {
+      return nameTranslations[languageCode]!;
+    }
+
+    // Try case-insensitive match
+    final normalizedLanguageCode = languageCode.toLowerCase();
+    for (final key in nameTranslations.keys) {
+      if (key.toLowerCase() == normalizedLanguageCode) {
+        return nameTranslations[key]!;
+      }
+    }
+
+    // Fall back to default name
+    return name;
   }
 }

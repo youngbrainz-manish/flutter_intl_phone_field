@@ -422,7 +422,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       useRootNavigator: false,
       builder: (context) => StatefulBuilder(
         builder: (ctx, setState) => CountryPickerDialog(
-          languageCode: widget.languageCode.toLowerCase(),
+          languageCode: widget.languageCode,
           style: widget.pickerDialogStyle,
           filteredCountries: filteredCountries,
           searchText: widget.searchText,
@@ -446,7 +446,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       builder: (context) => StatefulBuilder(
         builder: (ctx, setState) => CountryPickerDialog(
           dialogPadding: EdgeInsets.zero,
-          languageCode: widget.languageCode.toLowerCase(),
+          languageCode: widget.languageCode,
           style: widget.pickerDialogStyle,
           filteredCountries: filteredCountries,
           searchText: widget.searchText,
@@ -534,7 +534,12 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
               return null;
             }
           : (value) {
-              if (value == null || !isNumeric(value)) return validatorMessage;
+              if (value == null || value == "" || value.toString().isEmpty) {
+                return validatorMessage ?? "Please Enter Mobile Number";
+              }
+              if (!isNumeric(value)) {
+                return validatorMessage ?? "Please Enter Valid Mobile Number";
+              }
               if (!widget.disableLengthCheck) {
                 return value.length >= _selectedCountry.minLength &&
                         value.length <=

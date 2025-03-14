@@ -1,3 +1,8 @@
+## 0.0.6
+
+- [#1](https://github.com/rvndsngwn/flutter_intl_phone_field/issues/1) has been fixed.
+- [#2](https://github.com/rvndsngwn/flutter_intl_phone_field/issues/2) has been fixed.
+
 ## 0.0.5
 
 - Future.microtask() added to initState() to avoid `setState() or markNeedsBuild() called during build` error.
