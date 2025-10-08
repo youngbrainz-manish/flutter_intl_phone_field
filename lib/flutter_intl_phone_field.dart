@@ -316,8 +316,7 @@ class IntlPhoneField extends StatefulWidget {
     this.inputFormatters,
     this.enabled = true,
     this.keyboardAppearance,
-    @Deprecated('Use searchFieldInputDecoration of PickerDialogStyle instead')
-    this.searchText = 'Search country',
+    @Deprecated('Use searchFieldInputDecoration of PickerDialogStyle instead') this.searchText = 'Search country',
     this.dropdownIconPosition = IconPosition.leading,
     this.dropdownIcon = const Icon(Icons.arrow_drop_down),
     this.autofocus = false,
@@ -368,25 +367,20 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
     if (widget.initialCountryCode == null && number.startsWith('+')) {
       number = number.substring(1);
       // parse initial value
-      _selectedCountry = countries.firstWhere(
-          (country) => number.startsWith(country.fullCountryCode),
+      _selectedCountry = countries.firstWhere((country) => number.startsWith(country.fullCountryCode),
           orElse: () => _countryList.first);
 
       // remove country code from the initial number value
-      number = number.replaceFirst(
-          RegExp("^${_selectedCountry.fullCountryCode}"), "");
+      number = number.replaceFirst(RegExp("^${_selectedCountry.fullCountryCode}"), "");
     } else {
-      _selectedCountry = _countryList.firstWhere(
-          (item) => item.code == (widget.initialCountryCode ?? 'US'),
+      _selectedCountry = _countryList.firstWhere((item) => item.code == (widget.initialCountryCode ?? 'DK'),
           orElse: () => _countryList.first);
 
       // remove country code from the initial number value
       if (number.startsWith('+')) {
-        number = number.replaceFirst(
-            RegExp("^\\+${_selectedCountry.fullCountryCode}"), "");
+        number = number.replaceFirst(RegExp("^\\+${_selectedCountry.fullCountryCode}"), "");
       } else {
-        number = number.replaceFirst(
-            RegExp("^${_selectedCountry.fullCountryCode}"), "");
+        number = number.replaceFirst(RegExp("^${_selectedCountry.fullCountryCode}"), "");
       }
     }
     Future.microtask(
@@ -430,6 +424,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
           countryList: _countryList,
           selectedCountry: _selectedCountry,
           onCountryChanged: (Country country) {
+            print("object route => ${country.code} :: ${country.name}");
             _selectedCountry = country;
             widget.onCountryChanged?.call(country);
             setState(() {});
@@ -469,11 +464,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
     return TextFormField(
       key: widget.formFieldKey,
       initialValue: (widget.controller == null) ? number : null,
-      autofillHints: widget.autofillHints ??
-          [
-            AutofillHints.telephoneNumberNational,
-            AutofillHints.telephoneNumber
-          ],
+      autofillHints: widget.autofillHints ?? [AutofillHints.telephoneNumberNational, AutofillHints.telephoneNumber],
       readOnly: widget.readOnly,
       obscureText: widget.obscureText,
       textAlign: widget.textAlign,
@@ -497,8 +488,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
         widget.onSaved?.call(
           PhoneNumber(
             countryISOCode: _selectedCountry.code,
-            countryCode:
-                '+${_selectedCountry.dialCode}${_selectedCountry.regionCode}',
+            countryCode: '+${_selectedCountry.dialCode}${_selectedCountry.regionCode}',
             number: value ?? "",
           ),
         );
@@ -543,16 +533,13 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
               }
               if (!widget.disableLengthCheck) {
                 return value.length >= _selectedCountry.minLength &&
-                        value.length <=
-                            (widget.maxLength ?? _selectedCountry.maxLength)
+                        value.length <= (widget.maxLength ?? _selectedCountry.maxLength)
                     ? null
                     : widget.invalidMessage;
               }
               return validatorMessage;
             },
-      maxLength: widget.disableLengthCheck
-          ? null
-          : widget.maxLength ?? _selectedCountry.maxLength,
+      maxLength: widget.disableLengthCheck ? null : widget.maxLength ?? _selectedCountry.maxLength,
       onEditingComplete: widget.onEditingComplete,
       expands: widget.expands,
       maxLines: widget.maxLines,
@@ -563,8 +550,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       inputFormatters: widget.inputFormatters ??
           [
             FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-            LengthLimitingTextInputFormatter(
-                widget.maxLength ?? _selectedCountry.maxLength),
+            LengthLimitingTextInputFormatter(widget.maxLength ?? _selectedCountry.maxLength),
           ],
       enabled: widget.enabled,
       keyboardAppearance: widget.keyboardAppearance,
