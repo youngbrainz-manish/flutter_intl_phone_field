@@ -424,7 +424,6 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
           countryList: _countryList,
           selectedCountry: _selectedCountry,
           onCountryChanged: (Country country) {
-            print("object route => ${country.code} :: ${country.name}");
             _selectedCountry = country;
             widget.onCountryChanged?.call(country);
             setState(() {});

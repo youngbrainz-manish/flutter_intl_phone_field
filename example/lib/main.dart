@@ -64,14 +64,9 @@ class _MyAppState extends State<MyApp> {
                       borderSide: BorderSide(),
                     ),
                   ),
-                  languageCode: "hi",
-                  onChanged: (phone) {
-                    print(
-                        "object route =>  :: ${phone.completeNumber} :: ${phone.countryCode} :: ${phone.countryISOCode}");
-                  },
-                  onCountryChanged: (country) {
-                    print('Country changed to: ${country.maxLength} ${country.name} :: ${country.code}');
-                  },
+                  languageCode: "en",
+                  onChanged: (phone) {},
+                  onCountryChanged: (country) {},
                 ),
                 const SizedBox(
                   height: 10,

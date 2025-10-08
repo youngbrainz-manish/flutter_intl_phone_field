@@ -148,8 +148,6 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
                         style: widget.style?.countryCodeStyle ?? const TextStyle(fontWeight: FontWeight.w700),
                       ),
                       onTap: () {
-                        print(
-                            "object => ${index} :: ${_filteredCountries[index].fullCountryCode} :: ${_filteredCountries[index].maxLength}");
                         _selectedCountry = _filteredCountries[index];
                         widget.onCountryChanged(_selectedCountry);
                         Navigator.of(context).pop();

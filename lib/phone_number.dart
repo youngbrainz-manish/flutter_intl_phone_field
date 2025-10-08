@@ -25,11 +25,9 @@ class PhoneNumber {
       String number;
       Country country = getCountry(completeNumber);
       if (completeNumber.startsWith('+')) {
-        number = completeNumber
-            .substring(1 + country.dialCode.length + country.regionCode.length);
+        number = completeNumber.substring(1 + country.dialCode.length + country.regionCode.length);
       } else {
-        number = completeNumber
-            .substring(country.dialCode.length + country.regionCode.length);
+        number = completeNumber.substring(country.dialCode.length + country.regionCode.length);
       }
       return PhoneNumber(
         countryISOCode: country.code,
@@ -53,7 +51,7 @@ class PhoneNumber {
   }
 
   bool isValidNumber() {
-    Country country = getCountry(completeNumber);
+    Country country = getCountry(completeNumber, countryISOCode: countryISOCode);
     if (number.length < country.minLength) {
       return false;
     }
@@ -68,7 +66,7 @@ class PhoneNumber {
     return countryCode + number;
   }
 
-  static Country getCountry(String phoneNumber) {
+  static Country getCountry(String phoneNumber, {String? countryISOCode}) {
     if (phoneNumber == "") {
       return countries.firstWhere((country) => country.code == "IN");
     }
@@ -80,21 +78,24 @@ class PhoneNumber {
     }
 
     if (phoneNumber.startsWith('+')) {
-      return countries.firstWhere(
-        (country) => phoneNumber
-            .substring(1)
-            .startsWith(country.dialCode + country.regionCode),
-      );
+      List<Country>? ctr = countries.where(
+        (country) {
+          return countryISOCode != null
+              ? (phoneNumber.startsWith("+${country.dialCode}${country.regionCode}") && country.code == countryISOCode)
+              : phoneNumber.startsWith("+${country.dialCode}${country.regionCode}");
+        },
+      ).toList();
+
+      return ctr.first;
     }
-    return countries.firstWhere(
-      (country) =>
-          phoneNumber.startsWith(country.dialCode + country.regionCode),
+    Country ctr = countries.firstWhere(
+      (country) => phoneNumber.startsWith(country.dialCode + country.regionCode),
     );
+    return ctr;
   }
 
   String get getOriginalValue => number;
 
   @override
-  String toString() =>
-      'PhoneNumber(countryISOCode: $countryISOCode, countryCode: $countryCode, number: $number)';
+  String toString() => 'PhoneNumber(countryISOCode: $countryISOCode, countryCode: $countryCode, number: $number)';
 }
