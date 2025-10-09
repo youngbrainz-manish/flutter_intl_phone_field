@@ -484,7 +484,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       showCursor: widget.showCursor,
       magnifierConfiguration: widget.magnifierConfiguration,
       decoration: widget.decoration.copyWith(
-        prefixIcon: widget.prefixIcon ?? _buildFlagsButton(),
+        prefixIcon: widget.prefixIcon ?? _buildFlagsButton(flagSize: widget.flagSize, textSize: widget.textSize),
         counterText: !widget.enabled ? '' : null,
       ),
       style: widget.style,
@@ -564,7 +564,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
     );
   }
 
-  Container _buildFlagsButton() {
+  Container _buildFlagsButton({double? flagSize, double? textSize}) {
     return Container(
       margin: widget.flagsButtonMargin,
       child: DecoratedBox(
@@ -596,11 +596,11 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
                       ? Image.asset(
                           'assets/flags/${_selectedCountry.code.toLowerCase()}.png',
                           package: 'flutter_intl_phone_field',
-                          width: 32,
+                          width: flagSize ?? 32,
                         )
                       : Text(
                           _selectedCountry.flag,
-                          style: const TextStyle(fontSize: 18),
+                          style: TextStyle(fontSize: textSize ?? 18),
                         ),
                   const SizedBox(width: 8),
                 ],
