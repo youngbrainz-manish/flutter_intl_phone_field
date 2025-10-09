@@ -12,6 +12,9 @@ import './countries.dart';
 import './phone_number.dart';
 
 class IntlPhoneField extends StatefulWidget {
+  final double? flagSize;
+  final double? textSize;
+
   /// The TextFormField key.
   final GlobalKey<FormFieldState>? formFieldKey;
 
@@ -289,6 +292,8 @@ class IntlPhoneField extends StatefulWidget {
 
   const IntlPhoneField({
     Key? key,
+    this.flagSize,
+    this.textSize,
     this.formFieldKey,
     this.initialCountryCode,
     this.languageCode = 'en',

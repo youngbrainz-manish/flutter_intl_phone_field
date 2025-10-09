@@ -41,9 +41,7 @@ class _MyAppState extends State<MyApp> {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10),
                 const TextField(
                   decoration: InputDecoration(
                     labelText: 'Email',
