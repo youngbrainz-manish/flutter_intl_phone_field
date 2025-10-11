@@ -78,20 +78,28 @@ class PhoneNumber {
     }
 
     if (phoneNumber.startsWith('+')) {
-      List<Country>? ctr = countries.where(
-        (country) {
-          return countryISOCode != null
-              ? (phoneNumber.startsWith("+${country.dialCode}${country.regionCode}") && country.code == countryISOCode)
-              : phoneNumber.startsWith("+${country.dialCode}${country.regionCode}");
-        },
-      ).toList();
-
-      return ctr.first;
+      if (countryISOCode == null) {
+        return countries.firstWhere(
+          (country) => phoneNumber.substring(1).startsWith(country.dialCode + country.regionCode),
+        );
+      } else {
+        List<Country>? ctr = countries.where(
+          (country) {
+            return (phoneNumber.startsWith("+${country.dialCode}${country.regionCode}") &&
+                country.code == countryISOCode);
+          },
+        ).toList();
+        return ctr.first;
+      }
     }
-    Country ctr = countries.firstWhere(
-      (country) => phoneNumber.startsWith(country.dialCode + country.regionCode),
-    );
-    return ctr;
+    if (countryISOCode == null) {
+      return countries.firstWhere((country) => phoneNumber.startsWith(country.dialCode + country.regionCode));
+    } else {
+      Country ctr = countries.firstWhere(
+        (country) => phoneNumber.startsWith(country.dialCode + country.regionCode),
+      );
+      return ctr;
+    }
   }
 
   String get getOriginalValue => number;

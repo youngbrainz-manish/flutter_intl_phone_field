@@ -41,7 +41,9 @@ class _MyAppState extends State<MyApp> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(
+                  height: 10,
+                ),
                 const TextField(
                   decoration: InputDecoration(
                     labelText: 'Email',
@@ -54,7 +56,7 @@ class _MyAppState extends State<MyApp> {
                   height: 10,
                 ),
                 IntlPhoneField(
-                  initialValue: "7012345678",
+                  initialValue: "",
                   focusNode: focusNode,
                   decoration: const InputDecoration(
                     labelText: 'Phone Number',
@@ -65,6 +67,7 @@ class _MyAppState extends State<MyApp> {
                   languageCode: "en",
                   onChanged: (phone) {},
                   onCountryChanged: (country) {},
+                  initialCountryCode: "",
                 ),
                 const SizedBox(
                   height: 10,
