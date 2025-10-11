@@ -50,8 +50,8 @@ class PhoneNumber {
     }
   }
 
-  bool isValidNumber() {
-    Country country = getCountry(completeNumber, countryISOCode: countryISOCode);
+  bool isValidNumber({String? countryIsoCode}) {
+    Country country = getCountry(completeNumber, countryISOCode: countryIsoCode ?? countryISOCode);
     if (number.length < country.minLength) {
       return false;
     }
@@ -85,8 +85,7 @@ class PhoneNumber {
       } else {
         List<Country>? ctr = countries.where(
           (country) {
-            return (phoneNumber.startsWith("+${country.dialCode}${country.regionCode}") &&
-                country.code == countryISOCode);
+            return (country.code == countryISOCode);
           },
         ).toList();
         return ctr.first;
